@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Bakery Website</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+   
+
+    
+	<style>@import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
+
+:root{
+  --primary-color:  #c98d83;
+  --secondary : #783b31;
+  --bg: #f2f1ec;
+  --black: #000;
+  --white: #fff;
+  --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+*{
+  font-family: 'Vidaloka', sans-serif;
+  margin:0; padding:0;
+  box-sizing: border-box;
+  outline: none; border:none;
+  text-decoration: none;
+  text-transform: capitalize;
+  transition: .2s linear;
+}
+
+html{
+  font-size: 62.5%;
+  overflow-x: hidden;
+  scroll-padding-top: 9rem;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+  width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+  background: var(--primary-color);
+  border-radius: 5rem;
+}
+
+section{
+  padding: 2rem 7%;
+}
+
+.heading{
+  text-align: center;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  margin-bottom: 3rem;
+  padding: 1.2rem 0;
+  font-size: 4rem;
+}
+
+.heading span{
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+.btn{
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 1rem 3rem;
+  font-size: 1.7rem;
+  color: var(--white);
+  border-radius: .5rem;
+  box-shadow: var(--box-shadow);
+  background: var(--primary-color);
+  cursor: pointer;
+}
+
+.btn:hover{
+  background: var(--secondary);
+}
+
+/* header */
+
+.header{
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--bg);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 9%;
+}
+
+.header .logo{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--black);
+}
+
+.header .logo i{
+  color: var(--secondary);
+  padding-right: .5rem;
+}
+
+.header .navbar a{
+  font-size: 1.7rem;
+  color: var(--black);
+  margin: 0 1rem;
+}
+
+.header .navbar a:hover{
+  color: var(--primary-color);
+}
+
+.header .icons div{
+  font-size: 2.5rem;
+  margin-left: 1.7rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.header .icons div:hover{
+  color: var(--primary-color);
+}
+
+#menu-btn{
+  display: none;
+}
+
+/* shopping cart */
+
+.cart-items-container{
+  position: fixed;
+  top: 0; right: -105%;
+  width: 35rem;
+  background: var(--white);
+  display: flex;
+  flex-flow: column;
+  gap: 2rem;
+  justify-content: center;
+  height: 100%;
+  z-index: 1200;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cart-items-container.active{
+  right: 0;
+  box-shadow: 0 0 0 100vw rgba(0, 0, 0, 0.8);
+}
+
+.cart-items-container #close-form{
+  position: absolute;
+  top: 1.5rem;
+  right: 2.5rem;
+  font-size: 4rem;
+  cursor: pointer;
+  color: var(--black);
+}
+
+.cart-items-container #close-form:hover{
+  transform: rotate(90deg);
+  color: var(--primary-color);
+}
+
+.cart-items-container .title{
+  font-size: 2.5rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: .2rem;
+}
+
+.cart-items-container .cart-item{
+  position: relative;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.cart-items-container .cart-item .fa-times{
+  position: absolute;
+  top: 1rem; right: 1rem;
+  font-size: 2rem;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.cart-items-container .cart-item .fa-times:hover{
+  color: var(--primary-color);
+}
+
+.cart-items-container .cart-item img{
+  height: 7rem;
+}
+
+.cart-items-container .cart-item .content h3{
+  font-size: 2rem;
+  color: var(--black);
+  padding-bottom: .5rem;
+}
+
+.cart-items-container .cart-item .content .price{
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  text-align: left;
+}
+
+/* end */
+
+/* home */
+
+@keyframes fadeIn{
+  0%{
+    transform: translateY(-4rem) scale(1.1);
+    opacity: 0;
+  }
+}
+
+.home{
+  padding: 0;
+}
+
+.home .slide{
+  min-height: 100vh;
+  background-size: cover !important;
+  background-position: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home .slide::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+.home .slide .content{
+  text-align: center;
+  width: 70rem;
+  display: none;
+}
+
+.home .slide .content h3{
+  font-size: 6rem;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.2;
+  padding: 2rem 0;
+  animation: fadeIn 0.4s cubic-bezier(.54, 1.3,.63,1.34) .2s backwards;
+}
+
+.home .slide .content .btn{
+  animation: fadeIn 0.4s cubic-bezier(.54, 1.3,.63,1.34) .4s backwards;
+}
+
+.home .swiper-slide-active .content{
+  display: inline-block;
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+  height: 4rem;
+  width: 4rem;
+  line-height: 4rem;
+  margin-left: 1.5rem;
+  background: var(--white);
+  color: var(--black);
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover{
+  background: var(--primary-color);
+  color: var(--white);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after{
+  font-size: 1.5rem;
+}
+
+/* end */
+
+/* banner */
+
+.banner{
+  background: url(../images/banner-bg.jpg);
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.banner img{
+  margin-top: 3rem;
+  height: 100%;
+  width: 100%;
+}
+
+/* banner end*/
+
+/* about */
+
+.about .row{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.about .row .image{
+  flex: 1 1 40rem;
+}
+
+.about .row .image img{
+  width: 100%;
+  height: 100%;
+}
+
+.about .row .content{
+  flex: 1 1 40rem;
+}
+
+.about .row .content h3{
+  color: var(--black);
+  font-size: 3.5rem;
+  line-height: 1.5;
+}
+
+.about .row .content h3 span{
+  color: var(--secondary);
+}
+
+.about .row .content p{
+  font-size: 1.4rem;
+  color: #444;
+  padding: 1rem 0;
+  line-height: 2;
+}
+
+/* about end*/
+
+/* product */
+
+.product{
+  background: var(--bg);
+}
+
+.product .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem,1fr));
+  gap: 2rem;
+}
+
+.product .box-container .box{
+  background: var(--white);
+  border-radius: .5rem;
+  box-shadow: var(--box-shadow);
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+
+.product .box-container .box .image{
+  height: 35rem;
+  width: 100%;
+  padding: 1.1rem;
+}
+
+.product .box-container .box .image img{
+  height: 100%;
+  width: 100%;
+  border-radius: .5rem;
+  object-fit: cover;
+}
+
+.product .box-container .box .content{
+  padding: 2rem;
+  padding-top: 0;
+}
+
+.product .box-container .box .content h3{
+  color: var(--black);
+  font-size: 2.5rem;
+}
+
+.product .box-container .box .content .stars{
+  padding: 1rem 0;
+}
+
+.product .box-container .box .content .stars i{
+  font-size: 1.7rem;
+  color: var(--secondary);
+}
+
+.product .box-container .box .content .price{
+  font-size: 2.5rem;
+  font-weight: bolder;
+  color: var(--secondary);
+  margin-right: 1rem;
+}
+
+/* product end */
+
+/* gallery */
+
+.gallery .gallery-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+.gallery .gallery-container .box{
+  height: 40rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.gallery .gallery-container .box img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.gallery .gallery-container .box:hover img{
+  transform: scale(1.1);
+}
+
+.gallery .gallery-container .box .icons{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0; left: 0;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.gallery .gallery-container .box .icons i{
+  font-size: 6rem;
+  color: var(--white);
+}
+
+.gallery .gallery-container .box:hover .icons{
+  display: flex;
+}
+
+
+/* gallery end*/
+
+
+/* weekly promotions */
+
+.promotion{
+  background: url(../images/promotion.jpg) no-repeat;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.promotion .box-container{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 4rem;
+}
+
+.promotion .box-container .box{
+  flex: 1 1 55rem;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.promotion .box-container .box .content{
+  text-align: center;
+}
+
+.promotion .box-container .box .content h3{
+  font-size: 3rem;
+  color: var(--black);
+}
+
+.promotion .box-container .box .content p{
+  font-size: 1.4rem;
+  color: #444;
+  padding: 1rem 0;
+  line-height: 1.8;
+}
+
+/* weekly promotions ends*/
+
+/* team */
+
+.team .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+.team .box-container .box{
+  background: var(--white);
+  border-radius: .5rem;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.team .box-container .box .image{
+  height: 35rem;
+  width: 100%;
+  padding: 1.1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.team .box-container .box .image img{
+  height: 100%;
+  width: 100%;
+  border-radius: .5rem;
+  object-fit: cover;
+}
+
+.team .box-container .box:hover .image img{
+  transform: scale(1.1);
+}
+
+.team .box-container .box .content{
+  padding: 2rem;
+  padding-top: 0;
+}
+
+.team .box-container .box .content h3{
+  color: var(--black);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.team .box-container .box .content p{
+  color: var(--black);
+  font-size: 1.7rem;
+  margin-bottom: 1rem;
+}
+
+.team .box-container .box .content .share i{
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  background: none;
+  border-radius: .5rem;
+  font-size: 2rem;
+  color: var(--primary-color);
+  border: .1rem solid var(--primary-color);
+  margin: .5rem;
+}
+
+.team .box-container .box .content .share i:hover{
+  color: var(--white);
+  border: .1rem solid var(--secondary);
+  background: var(--secondary);
+  box-shadow: var(--box-shadow);
+  transition: .4s linear;
+  cursor: pointer;
+}
+
+/* team */
+
+/* parallax */
+
+.parallax{
+  background: url(../images/parallax.jpg) no-repeat;
+  min-height: 100vh;
+  background-attachment: fixed;
+  background-size: cover !important;
+  background-position: center !important;
+  z-index: 0;
+  position: relative;
+}
+
+.parallax::before{
+  content: '';
+  position: absolute;
+  top: 0; left: 0; 
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: -1;
+}
+
+.parallax .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+  gap: 2rem;
+}
+
+.parallax .box-container .box{
+  text-align: center;
+  justify-content: center;
+}
+
+.parallax .box-container .box .image{
+  padding-top: 5rem;
+}
+
+.parallax .box-container .box .image img{
+  height: 35%;
+  width: 35%;
+  object-fit: cover;
+}
+
+.parallax .box-container .box .content{
+  padding: 2rem;
+}
+
+.parallax .box-container .box .content h3{
+  color: var(--white);
+  font-size: 2.5rem;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.parallax .box-container .box .content p{
+  color: var(--white);
+  font-size: 1.4rem;
+  line-height: 1.8;
+}
+
+/* parallax end */
+
+
+/* order */
+
+.order .row{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.order .row .image{
+  flex: 1 1 30rem;
+}
+
+.order .row .image img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.order .row form{
+  flex: 1 1 50rem;
+  padding: 5rem;
+}
+
+.order .row form .inputBox{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.order .row form .inputBox input,
+.order .row form textarea{
+  padding: 1rem;
+  margin: 1rem 0;
+  font-size: 1.7rem;
+  color: var(--secondary);
+  text-transform: capitalize;
+  background: var(--bg);
+  border-radius: .5rem;
+  width: 49%;
+}
+
+.order .row form .inputBox input:focus,
+.order .row form textarea:focus{
+  border: .1rem solid var(--primary-color);
+}
+
+.order .row form textarea{
+  width: 100%;
+  resize: none;
+  height: 15rem;
+}
+
+/* order */
+
+/* footer */
+
+.footer{
+  background: var(--bg);
+  text-align: center;
+}
+
+.footer .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.footer .box-container .box h3{
+  text-transform: capitalize;
+  font-size: 2.2rem;
+  color: var(--secondary);
+  padding: 1rem 0;
+}
+
+.footer .box-container .box p{
+  font-size: 1.5rem;
+  line-height: 2;
+  color: #444;
+  padding: .5rem 0;
+}
+
+.footer .box-container .box .share{
+  margin-top: 1rem;
+}
+
+.footer .box-container .box .share a{
+  height: 4.5rem;
+  width: 4.5rem;
+  line-height: 4.5rem;
+  border-radius: 10%;
+  font-size: 1.7rem;
+  background: var(--primary-color);
+  color: var(--white);
+  margin-right: .3rem;
+}
+
+.footer .box-container .box .share a:hover{
+  background: var(--secondary);
+}
+
+.footer .box-container .box .link{
+  font-size: 1.7rem;
+  line-height: 2;
+  color: var(--primary-color);
+  padding: .5rem 0;
+  display: block;
+}
+
+.footer .box-container .box .link:hover{
+  color: var(--secondary);
+  text-decoration: underline;
+}
+
+.footer .credit{
+  text-align: center;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  font-size: 2rem;
+  text-transform: capitalize;
+  color: var(--primary-color);
+  border-top: .1rem solid var(--secondary);
+}
+
+.footer .credit span{
+  color: var(--secondary);
+}
+
+
+
+
+
+/* footer */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* media queries */
+
+@media (max-width: 991px){
+
+  html{
+    font-size: 55%;
+  }
+
+  .header{
+    padding: 2rem;
+  }
+
+  section{
+    padding: 2rem;
+  }
+
+}
+
+@media (max-width: 768px){
+  #menu-btn{
+    display: inline-block;
+  }
+
+  .fa-times{
+    transform: rotate(180deg);
+  }
+
+  .header .navbar{
+    position: absolute;
+    top: 99%;
+    left: 0; right: 0;
+    background: var(--white);
+    border-top: .1rem solid var(--secondary);
+    clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+  }
+
+  .header .navbar.active{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+
+  .header .navbar a{
+    display: block;
+    margin: 2rem;
+  }
+
+  .home .slide .content{
+    width: 40rem;
+  }
+
+  .home .slide .content h3{
+    font-size: 4rem;
+  }
+
+}
+
+@media (max-width: 450px){
+
+  html{
+    font-size: 50%;
+  }
+
+  .home .slide .content h3{
+    font-size: 3rem;
+  }
+
+}</style>
+</head>
+<body>
+    
+    <!-- header -->
+
+    <header class="header">
+
+        <a href="#" class="logo"> <i class="fas fa-bread-slice"></i> Panaderia y resposteria Edith </a>
+
+        <nav class="navbar">
+            <a href="#home">Menu</a>
+            <a href="#about">Aserca de</a>
+            <a href="#product">producto</a>
+            <a href="#gallery">galeria</a>
+            <a href="#team">equipo</a>
+            <a href="#order">order</a>
+        </nav>
+
+        <div class="icons">
+            <div id="cart-btn" class="fas fa-shopping-cart"></div>
+            <div id="menu-btn" class="fas fa-bars"></div>
+        </div>
+
+    </header>
+
+    <!-- header end -->
+
+    <!-- shopping cart -->
+
+    <div class="cart-items-container">
+
+        <div id="close-form" class="fas fa-times"></div>
+        <h3 class="title">checkout</h3>
+
+        <div class="cart-item">
+            <span class="fas fa-times"></span>
+            <img src="images/cart-1.jpg" alt="">
+            <div class="content">
+                <h3>bakery item 1</h3>
+                <div class="price">$45.99/-</div>
+            </div>
+        </div>
+
+        <div class="cart-item">
+            <span class="fas fa-times"></span>
+            <img src="images/cart-2.jpg" alt="">
+            <div class="content">
+                <h3>bakery item 2</h3>
+                <div class="price">$15.99/-</div>
+            </div>
+        </div>
+
+        <div class="cart-item">
+            <span class="fas fa-times"></span>
+            <img src="images/cart-3.jpg" alt="">
+            <div class="content">
+                <h3>bakery item 3</h3>
+                <div class="price">$29.99/-</div>
+            </div>
+        </div>
+
+        <a href="#" class="btn"> checkout </a>
+
+    </div>
+
+    <!-- shopping cart end-->
+
+    <!-- home -->
+
+    <section class="home" id="home">
+
+        <div class="swiper home-slider">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide slide" style="background: url(images/slider1.jpg) no-repeat;">
+                    <div class="content">
+                        <h3>Horneamos el mundo en un lugar mejor</h3>
+                        <a href="#" class="btn">comenzar</a>
+                    </div>
+                </div>
+
+                <div class="swiper-slide slide" style="background: url(images/slider2.jpg) no-repeat;">
+                    <div class="content">
+                        <h3>Horneamos el mundo en un lugar mejor</h3>
+                        <a href="#" class="btn">comenzar </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+
+        </div>
+
+    </section>
+
+    <!-- home section ends -->
+
+    <!-- banner -->
+
+    <section class="banner">
+        <img src="images/banner.png" alt="">
+    </section>
+
+
+    <!-- banner end-->
+
+    <!-- about us -->
+
+    <section class="about" id="about">
+
+        <h1 class="heading"> <span>acerca de </span>nosotros</h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="images/about.png" alt="">
+            </div>
+
+            <div class="content">
+                <h3>las cosas nuenas  <span>vienen a los </span> que hornean para otros</h3>
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <a href="#" class="btn">Leer Mas&nbsp;</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- about us end-->
+
+    <!-- product -->
+
+    <section class="product" id="product">
+
+        <h1 class="heading">Nuestro <span> producto</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/product-1.jpg" alt="">
+                </div>
+              <div class="content">
+                    <h3>Panqueques con fresa</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="price">Lps. 150</span>
+                    <a href="#" class="btn">añadir al carrito</a>
+                </div>
+            </div>
+			
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/product-2.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Panqueques don arandanos</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="price">Lps. 140</span>
+                    <a href="#" class="btn">añadir al carrito</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/product-3.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Pan artesanal</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="price">Lps. 120</span>
+                    <a href="#" class="btn">añadir al carrito</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/product-4.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Pastel de rosas</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="price">Lps. 1,300</span>
+                    <a href="#" class="btn">añadir al carrito</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/product-5.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Waffles</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="price">Lps. 130  </span>
+                    <a href="#" class="btn">añadir al carrito</a>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/p.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>Cupcake</h3>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="price">Lps. 15 "C.U" </span>
+                    <a href="#" class="btn">añadir al carrito</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- product end-->
+
+
+    <!-- gallery -->
+
+    <section class="gallery" id="gallery">
+
+        <h1 class="heading">Nuesta <span> galeria</span></h1>
+
+        <div class="gallery-container">
+
+            <a href="images/gallery1.jpg" class="box">
+                <img src="images/gallery1.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+
+            <a href="images/gallery2.jpg" class="box">
+                <img src="images/gallery2.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+
+            <a href="images/gallery3.jpg" class="box">
+                <img src="images/gallery3.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+
+            <a href="images/gallery4.jpg" class="box">
+                <img src="images/gallery4.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+
+            <a href="images/gallery5.jpg" class="box">
+                <img src="images/gallery5.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+
+            <a href="images/gallery6.jpg" class="box">
+                <img src="images/laca.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+			 <a href="images/gallery6.jpg" class="box">
+                <img src="images/cokies.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+			 <a href="images/barios pasteles.webp" class="box">
+                <img src="images/pastel.jpg" alt="">
+                <div class="icons"><i class="fas fa-plus"></i></div>
+            </a>
+			
+
+        </div>
+
+    </section>
+
+    <!-- gallery end -->
+
+    <!-- weekly promotions -->
+
+    <section class="promotion">
+
+        <h1 class="heading">Promociones <span>semanales</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="content">
+                    <h3>pastel de chocolate</h3>
+                    <p>.</p>
+                </div>
+
+                <img src="images/promotion1.png" alt="">
+            </div>
+
+            <div class="box">
+                <img src="images/promotion2.png" alt="">
+                <div class="content">
+                    <h3>pastes de nueces</h3>
+                    <p>.</p>
+                </div>
+                
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- weekly promotions ends -->
+
+    <!-- team -->
+
+    <section class="team" id="team">
+
+        <h1 class="heading">Nuestro   <span>equipo</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/clarence1.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>clarence</h3>
+                    <p>CEO</p>
+                    <div class="share">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/gomball.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>super gomball</h3>
+                    <p>manager</p>
+                    <div class="share">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/super.jpg" alt="">
+                </div>
+                <div class="content">
+                    <h3>super flakin</h3>
+                    <p>manager</p>
+                    <div class="share">
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-twitter"></i>
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- team -->
+
+    <!-- parallax -->
+
+    <section class="parallax">
+
+        <h1 class="heading">producto de <span>venta</span></h1>
+
+        <div class="box-container">
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/parallax-1.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>pan</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea minus laudantium placeat suscipit.</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/parallax-2.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>pasteles</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea minus laudantium placeat suscipit.</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="image">
+                    <img src="images/parallax-3.png" alt="">
+                </div>
+                <div class="content">
+                    <h3>donas</h3>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ea minus laudantium placeat suscipit.</p>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- parallax -->
+
+
+    <!-- order -->
+
+    <section class="order" id="order">
+
+        <h1 class="heading"><span>ordena</span> Ahora </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="images/order.gif" alt="">
+            </div>
+
+            <form action="">
+
+                <div class="inputBox">
+                    <input type="text" placeholder="Nombre">
+                    <input type="text" placeholder="Apellido">
+                </div>
+
+                <div class="inputBox">
+                    <input type="email" placeholder="email">
+                    <input type="number" placeholder="Numero telefonico">
+                </div>
+
+                <div class="inputBox">
+                    <input type="text" placeholder="nombre del alimento">
+                    <input type="number" placeholder="cuanto">
+                </div>
+
+                <textarea placeholder="su direccion" name="" id="" cols="30" rows="10"></textarea>
+                <input type="submit" value="ordene ya" class="btn">
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- order end -->
+
+    <!-- footer -->
+
+    <section class="footer">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>gary</h3>
+                <p>viva la mis angela.</p>
+                <div class="share">
+                    <a href="https://www.facebook.com/100094126386043/" class="fab fa-facebook-f"></a>
+                    <a href="#" class="fab fa-twitter"></a>
+                    <a href="#" class="fab fa-instagram"></a>
+                    <a href="#" class="fab fa-linkedin"></a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h3>E-mail</h3>
+                <a href="#" class="link">jafethgary@gmail.com</a>
+                <a href="#" class="link">jafethjgary@gmail.com</a>
+            </div>
+
+            <div class="box">
+                <h3>cel</h3>
+                <p>+504 3304-0024</p>
+                <p>+504 3304-0024</p>
+            </div>
+
+            <div class="box">
+                <h3> horario </h3>
+                <p>lunes - viernes: 9:00 - 23:00 <br> sabado: 8:00 - 24:00 </p>
+            </div>
+
+        </div>
+
+        
+
+    </section>
+
+
+
+
+
+
+
+    <!-- footer ends -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery-js/1.4.0/js/lightgallery.min.js"></script>
+
+    <script src="js/script.js"></script>
+
+    <script>
+        lightGallery(document.querySelector('.gallery .gallery-container'));
+    </script>
+
+
+</body>
+</html>
